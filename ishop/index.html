@@ -15,8 +15,39 @@
     <script src="MyComponent.js"></script>
 
     <script>
+        let companyName = 'IShop';
+        let mobileProducrts = [
+            {
+                name: 'Google Phone', price: '250$', quantity: 5, id: 111, src_name: 'icon1'
+            },
+            {
+                name: 'Xiaomi Mi 5s', price: '115$', quantity: 50, id: 222, src_name: 'icon2'
+            },
+            {
+                name: 'Appele IPhone', price: '200$', quantity: 3, id: 333, src_name: 'icon3'
+            },
+            {
+                name: 'Sony Xperia Z1', price: '150$', quantity: 25, id: 444, src_name: 'icon4'
+            },
+            {
+                name: 'Huawei P30', price: '215$', quantity: 15, id: 555, src_name: 'icon5'
+            },
+            {
+                name: 'Google Nexus', price: '240$', quantity: 55, id: 666, src_name: 'icon6'
+            },
+            {
+                name: 'Xiaomi Mi 9', price: '150$', quantity: 43, id: 777, src_name: 'icon7'
+            },
+            {
+                name: 'Apple IPhone X', price: '500$', quantity: 28, id: 888, src_name: 'icon8'
+            },
+            {
+                name: 'Samsung Q56', price: '200$', quantity: 1, id: 999, src_name: 'icon9'
+            },
+            
+        ];
         ReactDOM.render(
-            React.createElement(MyComponent),
+            React.createElement(MyComponent, {nameOfShop: companyName, products: mobileProducrts}),
             document.getElementById('container')
         );
     </script>
