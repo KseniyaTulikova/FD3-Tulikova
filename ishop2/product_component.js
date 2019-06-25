@@ -1,3 +1,11 @@
+"use strict";
+
+import React from 'react';
+
+import ReactDOM from 'react-dom';
+
+import './product_component.css';
+
 let productComponent = React.createClass({
     displayName: 'ProductComponent',
     getDefaultProps:'',
@@ -23,19 +31,20 @@ let productComponent = React.createClass({
         }
     },
     changeBackground: function(EO){
-
-        this.props.cdChangeBackground(EO.target.parentElement.id);
+        this.props.cdChangeBackground(EO.target.parentElement.id,EO.target.parentElement.selected);
     },
 
     render: function() {
-        return React.DOM.div({className: ` ${this.state.product.class}`, id: this.state.product.id,selected: this.props.isSelected, onClick: this.changeBackground},
-            React.DOM.div(null,this.state.product.name),
-            React.DOM.div(null,this.state.product.quantity),
-            React.DOM.div(null,this.state.product.price),
-            React.DOM.div(null,this.state.product.url_name),
-            React.DOM.div({className: 'button'},
-                React.DOM.input({type:'submit', id: this.state.product.id, defaultValue: 'Delete!', onClick: this.deleteProduct})
+        return ReactDOM.div({className: ` ${this.state.product.class}`, id: this.state.product.id,selected: (this.state.product.class == 'blue'? true : false), onClick: this.changeBackground},
+            ReactDOM.div(null,this.state.product.name),
+            ReactDOM.div(null,this.state.product.quantity),
+            ReactDOM.div(null,this.state.product.price),
+            ReactDOM.div(null,this.state.product.url_name),
+            ReactDOM.div({className: 'button'},
+                ReactDOM.input({type:'submit', id: this.state.product.id, defaultValue: 'Delete!', onClick: this.deleteProduct})
             )
         );
     },
 });
+
+export default productComponent;

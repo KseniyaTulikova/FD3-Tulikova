@@ -1,10 +1,20 @@
+"use strict";
+
+import React from 'react';
+
+import ReactDOM from 'react-dom';
+
+import productComponent from './product_component.js';
+
+import './IShop2.css';
+
 let IShop = React.createClass({
     dipslayName: 'Ishop',
     getDefaultProps: '',
     getInitialState: function(){
         return {defaultProps: this.props.products,
                 currentProd: '',
-            isSelected:this.props.selected,
+            isSelected: this.props.selected,
             background: 'blue',
          };
     },
@@ -22,20 +32,22 @@ let IShop = React.createClass({
             }
         } );
     },
-    changeBackground:function(id){
+    changeBackground:function(id, selected){
         let arr = [];
+
         this.state.defaultProps.forEach((item, index)=> {
-            if(item.id == id && item.class == 'blue') {
+            if(item.id == id && item.class == 'blue' && this.state.isSelected == selected) {
                 item.class = 'white';
                 arr.push(item);
                 
-            }else if(item.id == id ){
+            }else if (item.id == id && item.class == 'white' && this.state.isSelected == false){
+                debugger;
                 item.class = this.state.background;
                 arr.push(item);
-            }else {
+            } else {
                 arr.push(item);
-            } 
-            return  this.setState((currState, props)=> {return {isSelected:currState.isSelected = true, defaultProps: currState.defaultProps = arr}})
+            }
+            return  this.setState((currState, props)=> {return {isSelected:(currState.isSelected == false)||(currState.isSelected == true)||(false), defaultProps: currState.defaultProps = arr}})
         });
     },
     render: function() {
@@ -44,15 +56,17 @@ let IShop = React.createClass({
         return productArray.push(React.createElement(productComponent, {nameOfShop: companyName, product: item, key: item.id, cbDeleteProduct: this.deleteProduct,selected: this.state.isSelected , backgr:'', cdChangeBackground:this.changeBackground}))
        }
        );
-       return React.DOM.div({className: 'IShop'}, 
-            React.DOM.div({className: 'header'},
-                React.DOM.div(null,'Name'),
-                React.DOM.div(null,'Quantity'),
-                React.DOM.div(null,'Price'),
-                React.DOM.div(null,'URL'),
-                React.DOM.div({className: 'button'},'Control!')
+       return ReactDOM.div({className: 'IShop'}, 
+                ReactDOM.div({className: 'header'},
+                ReactDOM.div(null,'Name'),
+                ReactDOM.div(null,'Quantity'),
+                ReactDOM.div(null,'Price'),
+                ReactDOM.div(null,'URL'),
+                ReactDOM.div({className: 'button'},'Control!')
             ),
-            React.DOM.div({className: 'allProducts'}, productArray) 
+            ReactDOM.div({className: 'allProducts'}, productArray) 
         );
     },
 } );
+
+export default IShop;
