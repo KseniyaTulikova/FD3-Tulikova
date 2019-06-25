@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import IShop from './IShop.js';
+import productComponent from './product_component.js';
 
 
 let companyName = 'IShop';

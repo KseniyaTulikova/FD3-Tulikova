@@ -3,6 +3,7 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
+import productComponent from './product_component.js';
 
 import './product_component.css';
 
