@@ -3,26 +3,25 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 import productComponent from './product_component.js';
 
 import './IShop2.css';
 
-let IShop = React.createClass({
-    dipslayName: 'Ishop',
-    getDefaultProps: '',
-    getInitialState: function(){
-        return {defaultProps: this.props.products,
-                currentProd: '',
-            isSelected: this.props.selected,
-            background: 'blue',
-         };
-    },
-    propTypes: {
-        products: React.PropTypes.array,
-        nameOfShop: React.PropTypes.string.isRequired,
-    },
-    deleteProduct: function(product_id) {
+class IShop extends React.Component {
+    static propTypes = {
+        products: PropTypes.array,
+        nameOfShop: PropTypes.string.isRequired,
+    };
+    state = {
+        defaultProps: this.props.products,
+        currentProd: '',
+        isSelected: this.props.selected,
+        background: 'blue',
+    }
+
+    deleteProduct = (product_id) => {
         this.state.defaultProps.forEach((item,index) =>{
             if(product_id == item.id ) {
                 this.state.defaultProps.splice(index,1);
@@ -31,8 +30,9 @@ let IShop = React.createClass({
                });
             }
         } );
-    },
-    changeBackground:function(id, selected){
+    }
+
+    changeBackground = (id, selected) => {
         let arr = [];
 
         this.state.defaultProps.forEach((item, index)=> {
@@ -49,8 +49,9 @@ let IShop = React.createClass({
             }
             return  this.setState((currState, props)=> {return {isSelected:(currState.isSelected == false)||(currState.isSelected == true)||(false), defaultProps: currState.defaultProps = arr}})
         });
-    },
-    render: function() {
+    }
+
+    render() {
        let productArray = [];
         this.state.defaultProps.forEach( (item)=>{
         return productArray.push(React.createElement(productComponent, {nameOfShop: companyName, product: item, key: item.id, cbDeleteProduct: this.deleteProduct,selected: this.state.isSelected , backgr:'', cdChangeBackground:this.changeBackground}))
@@ -66,7 +67,7 @@ let IShop = React.createClass({
             ),
             ReactDOM.div({className: 'allProducts'}, productArray) 
         );
-    },
-} );
+    };
+};
 
 export default IShop;
