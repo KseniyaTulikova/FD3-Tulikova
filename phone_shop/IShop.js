@@ -37,7 +37,7 @@ class IShop extends React.Component {
 
         this.state.defaultProps.forEach((item, index) => {
             if (this.state.select_item_id == 0 && item.id == id) {
-            //    this.setState({select_item_id: id,isSelected: true} ); заменила state на др выражение,но само изменение не происходит,в пропсах значение передаётся,а в state componenta product_component не передаётся,в чём может быть ошибка?
+            //    this.setState({select_item_id: id,isSelected: true} ); заменила state на др выражение,но само изменение не происходит,в пропсах значение передаётся,а в state componenta product_component не передаётся,в чём может быть ошибка? state изменяются и уходят в пропсы компонента product_component(но почему тогда у компонента product_comonent props не пробрасываются в state)?
               return this.setState( (currState) => {return {select_item_id: currState.select_item_id = id, isSelected: currState.isSelected = true} } );
 
             } else if (this.state.select_item_id == item.id && this.state.isSelected == 'true') {
